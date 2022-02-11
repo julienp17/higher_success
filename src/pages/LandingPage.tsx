@@ -1,10 +1,13 @@
 import * as React from 'react';
+import { useNavigate } from "react-router-dom";
 import { Button, Stack, Container, Typography, Box } from '@mui/material';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import raining_money from '../assets/raining_money.gif'
 import logo from '../assets/logo.png'
 
 export default function LandingPage() {
+  const navigate = useNavigate()
+
   return (
     <Box sx={backgroundStyle}>
       <Container component="main" maxWidth="md" sx={{ mb: 10 }} >
@@ -16,7 +19,7 @@ export default function LandingPage() {
           <Typography variant="h5" component="h2" gutterBottom color="white" maxWidth="sm" textAlign="center">
             Can you guess who has the most success ?
           </Typography>
-          <Button variant="contained" size="large" endIcon={<NavigateNextIcon />}>
+          <Button variant="contained" size="large" endIcon={<NavigateNextIcon />} onClick={() => navigate('most-success')}>
             Start playing
           </Button>
         </Stack>

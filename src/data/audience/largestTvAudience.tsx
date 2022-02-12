@@ -1,6 +1,6 @@
 import { Contender } from '../types'
 
-// https://www.senscritique.com/liste/Les_100_morceaux_les_plus_ecoutes_sur_Spotify_All_Time/2708290
+// manque lien
 const largestTvAudience: Contender[] = [
   {
     name: "Lady Di's funeral (1997)",

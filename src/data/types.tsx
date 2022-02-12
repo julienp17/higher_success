@@ -1,6 +1,17 @@
 type Item = {
   name: string,
-  imageUri: string
+  imageUri: string,
+  value: number
 }
 
-export default Item
+type Query = {
+  caption: string,
+  items: Item[]
+}
+
+type Category = {
+  title: string,
+  queries: Query[]
+}
+
+export type { Item, Query, Category }

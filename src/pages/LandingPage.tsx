@@ -12,9 +12,9 @@ export default function LandingPage() {
     <Box sx={backgroundStyle}>
       <Container component="main" maxWidth="md" sx={{ mb: 10 }} >
         <Stack spacing={4} sx={{ alignItems: "center" }}>
-          <img src={logo} alt="Higher success logo" style={{ width: 250, height: 250 }}/>
+          <img src={logo} alt="Most successfull logo" style={{ width: 250, height: 250 }}/>
           <Typography variant="h2" component="h1" color="white">
-            Highest success
+            Most successfull
           </Typography>
           <Typography variant="h5" component="h2" gutterBottom color="white" maxWidth="sm" textAlign="center">
             Can you guess who has the most success ?

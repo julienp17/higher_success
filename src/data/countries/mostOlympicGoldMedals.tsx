@@ -64,7 +64,7 @@ const mostOlympicGoldMedals: Contender[] = [
   },
   {
     name: "Canada",
-    imageUri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYgsK7IK7EX4roBR9rJcuoAgqsMMSVpQQ0sA&usqp=CAU",
+    imageUri: "https://www.sportsnet.ca/wp-content/uploads/2022/02/Parrot-2-1040x572.jpg",
     value: 144
   },
   {

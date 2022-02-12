@@ -4,7 +4,7 @@ import numeral from "numeral";
 
 const company: Query[] = [
   {
-    caption: "Richest",
+    caption: "Richest company",
     items: richest,
     formatValue: (value: number) => `${numeral(value).format('($ 0.00 a)')}`
   }

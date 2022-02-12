@@ -4,7 +4,7 @@ import { Contender } from '../types'
 const largestTvAudience: Contender[] = [
   {
     name: "Lady Di's funeral (1997)",
-    imageUri: "https://i2-prod.mirror.co.uk/incoming/article1818823.ece/ALTERNATES/s1227b/The-hearse-carrying-the-body-of-Princess-Diana.jpg",
+    imageUri: "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/gettyimages-450287035-1501103110.jpg",
     value: 2_500_000_000,
   },
   {
@@ -39,17 +39,17 @@ const largestTvAudience: Contender[] = [
   },
   {
     name: "The Elvis concert in Mondovision (1973)",
-    imageUri: "",
+    imageUri: "https://s1.dmcdn.net/v/Guu-W1RIvU_pySh4p/x1080",
     value: 1_500_000_000,
   },
   {
     name: "The opening ceremony of the Sochi Winter Olympics (2014)",
-    imageUri: "",
+    imageUri: "https://townsquare.media/site/758/files/2014/02/467617691.jpg?w=980&q=75",
     value: 1_000_200_000
   },
   {
     name: "The wedding of Lady Di and Charles (1981)",
-    imageUri: "",
+    imageUri: "https://i.ytimg.com/vi/LM-g287Y95s/maxresdefault.jpg",
     value: 1_000_300_000
   }
 ]

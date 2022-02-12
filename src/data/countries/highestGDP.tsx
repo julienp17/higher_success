@@ -9,7 +9,7 @@ const highestGDP: Contender[] = [
   },
   {
     name: "China",
-    imageUri: "https://www.china-briefing.com/news/wp-content/uploads/2021/01/China-GDP-Up-6.5-In-Q4-2020.jpg",
+    imageUri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm6pzZBcitMrZCZPj8ls0sSsEwWro1HFvYwc-NEosMad1bUnMffRPk3KDlz2Xyta_MtgY&usqp=CAU",
     value: 12_237_700_479_375
   },
   {

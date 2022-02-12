@@ -14,7 +14,7 @@ const mostListenedMusics: Contender[] = [
   },
   {
     name: "Post Malone, Rockstar",
-    imageUri: "https://imgsrc.cineserie.com/2021/09/hero-image.fill_.size_1248x702.v1623364674.jpg?ver=1",
+    imageUri: "https://i0.wp.com/www.hip-hopvibe.com/wp-content/uploads/2017/09/Rockstar-Post-Malone-1.jpg?fit=800%2C440&ssl=1",
     value: 2_329_000_000
   },
   {

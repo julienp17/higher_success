@@ -90,7 +90,7 @@ function HomePanel({ categoryTitle } : { categoryTitle : string }) {
 function MiddleCaption({ caption, guessedRight } : { caption: string, guessedRight: boolean | undefined }) {
   return (
     <Stack sx={styles.middleStack} spacing={4} alignItems="center">
-      <Typography variant="h4" component="h2" color="white" textAlign="center">
+      <Typography variant="h6" component="h6" color="white" textAlign="center">
         In terms of...
       </Typography>
       <Typography variant="h2" component="h3" color="white" textAlign="center">
@@ -98,14 +98,9 @@ function MiddleCaption({ caption, guessedRight } : { caption: string, guessedRig
       </Typography>
       {
         guessedRight !== undefined &&
-        <Stack direction="row" spacing={2}>
-          <Typography variant="h2" component="h3" color="white">
-            You're
-          </Typography>
-          <Typography variant="h2" component="h3" color={guessedRight ? "green" : "red"}>
-            { guessedRight ? " RIGHT!" : " WRONG!"}
-          </Typography>
-        </Stack>
+        <Typography variant="h2" component="h3" color={guessedRight ? "green" : "red"}>
+          { guessedRight ? "RIGHT!" : "WRONG!"}
+        </Typography>
       }
     </Stack>
   )
@@ -118,6 +113,7 @@ export default function ChooseMostSuccess() {
   const guessMostSuccessfull = (contender: Contender): void => {
     const otherContender = (contender.name === quiz.contender.left.name ? quiz.contender.right : quiz.contender.left)
     const guessedRight = (contender.value > otherContender.value)
+
     setQuiz({ ...quiz, guessedRight: guessedRight })
     if (!guessedRight) {
       setTimeout(() => {

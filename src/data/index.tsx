@@ -2,6 +2,8 @@ import { Category } from './types'
 import USRappers from './USRappers'
 import football from './football'
 import movies from './movies'
+import billionaires from './billionaires'
+import countries from './countries'
 
 const compareCategories: Category[] = [
   {
@@ -15,6 +17,14 @@ const compareCategories: Category[] = [
   {
     title: "Movies",
     queries: movies
+  },
+  {
+    title: "Countries",
+    queries: countries
+  },
+  {
+    title: "Billionaires",
+    queries: billionaires
   }
 ]
 

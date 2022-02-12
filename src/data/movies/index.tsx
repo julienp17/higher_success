@@ -1,6 +1,6 @@
+import numeral from "numeral";
 import { Query } from '../types'
 import highestGross from './highestGross'
-import numeral from "numeral";
 
 const movies: Query[] = [
   {

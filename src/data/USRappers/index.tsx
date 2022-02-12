@@ -4,7 +4,8 @@ import grammyAwardsWon from "./grammyAwardsWon"
 const USRappers: Query[] = [
   {
     caption: "Grammy awards won",
-    items: grammyAwardsWon
+    items: grammyAwardsWon,
+    formatValue: "grammies"
   }
 ]
 

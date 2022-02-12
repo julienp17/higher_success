@@ -1,7 +1,7 @@
-import { Item } from '../types'
+import { Contender } from '../types'
 
 // https://en.wikipedia.org/wiki/List_of_highest-grossing_films#Highest-grossing_films
-const highestGross: Item[] = [
+const highestGross: Contender[] = [
   {
     name: "Avatar",
     imageUri: "https://geeko.lesoir.be/wp-content/uploads/2020/05/avatar.jpg",

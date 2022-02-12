@@ -1,4 +1,4 @@
-type Item = {
+type Contender = {
   name: string,
   imageUri: string,
   value: number
@@ -6,7 +6,8 @@ type Item = {
 
 type Query = {
   caption: string,
-  items: Item[]
+  items: Contender[],
+  formatValue: string | ((value: number) => string)
 }
 
 type Category = {
@@ -14,4 +15,14 @@ type Category = {
   queries: Query[]
 }
 
-export type { Item, Query, Category }
+type Quiz = {
+  category: Category,
+  query: Query,
+  contender: {
+    left: Contender,
+    right: Contender
+  },
+  guessedRight: boolean | undefined
+}
+
+export type { Contender, Query, Category, Quiz }

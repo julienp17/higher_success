@@ -1,7 +1,7 @@
-import { Item } from '../types'
+import { Contender } from '../types'
 
 // https://www.chroniquesbleues.fr/Tableau-general-des-buteurs
-const mostGoalsForFrance: Item[] = [
+const mostGoalsForFrance: Contender[] = [
   {
     name: "Thierry Henry",
     imageUri: "https://fff.twic.pics/https://media.fff.fr/uploads/images/5594f93efcccea1c5892660aa05d8cd5.png?twic=v1/focus=1902x804",

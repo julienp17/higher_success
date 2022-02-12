@@ -1,7 +1,7 @@
-import { Item } from '../types'
+import { Contender } from '../types'
 
 // https://sportzpoint.com/football/10-players-who-have-won-the-most-trophies-in-football-history/
-const mostTrophiesPlayer: Item[] = [
+const mostTrophiesPlayer: Contender[] = [
   {
     name: "Dani Alves",
     imageUri: "http://images.performgroup.com/di/library/omnisport/b/de/danialves-cropped_1ffo3jqljmff61jc1yxydyojty.jpg?t=484865028&t=484865028&w=1200&h=630",

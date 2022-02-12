@@ -5,11 +5,13 @@ import mostTrophiesPlayer from './mostTrophiesPlayer'
 const football: Query[] = [
   {
     caption: "Most trophies won",
-    items: mostTrophiesPlayer
+    items: mostTrophiesPlayer,
+    formatValue: "trophies won"
   },
   {
     caption: "Most goals for France",
-    items: mostGoalsForFrance
+    items: mostGoalsForFrance,
+    formatValue: "goals"
   }
 ]
 

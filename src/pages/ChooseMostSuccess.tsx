@@ -1,44 +1,64 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { Stack, Box, Avatar, Typography, Button, IconButton } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import compareCategories from '../data';
-import { Item } from '../data/types';
+import { Quiz, Contender, Query } from '../data/types';
 import { Link } from 'react-router-dom';
 
 function getRandomElement<Type>(arr: Type[]): Type {
   return arr[Math.floor(Math.random() * arr.length)]
 }
 
-function LeftCompared({ compared } : { compared: Item }) {
-  return (
-    <Box sx={styles.side} >
-      <img width="100%" height="100%" style={styles.bgImg} src={compared.imageUri}/>
-      <Typography variant="h3" component="h1" color="white" textAlign="center">
-        { `"${compared.name}"` }
-      </Typography>
-    </Box>
-  )
+function generateQuiz(): Quiz {
+  const category = getRandomElement(compareCategories)
+  const query = getRandomElement(category.queries)
+  const compared = getRandomElement(query.items)
+  const contender = getRandomElement(query.items.filter(item => item.name !== compared.name))
+
+  return ({
+    category: category,
+    query: query,
+    contender: {
+      left: compared,
+      right: contender
+    },
+    guessedRight: undefined
+  })
 }
 
-function RightContender({ contender } : { contender: Item }) {
+type SideContenderProps = {
+  contender: Contender,
+  guessMostSuccessfull: (contender: Contender) => boolean,
+  guessed: boolean,
+  formatValue: string | ((value: number) => string)
+}
+
+function SideContender({ contender, guessMostSuccessfull, guessed, formatValue } : SideContenderProps) {
   return (
     <Box sx={styles.side} >
       <img width="100%" height="100%" style={styles.bgImg} src={contender.imageUri} />
-      <Stack spacing={2} alignItems="center">
+      <Stack spacing={2} alignItems="center" >
         <Typography variant="h3" component="h1" color="white" textAlign="center">
           { `"${contender.name}"` }
         </Typography>
         <Typography variant="h6" component="p" color="white" textAlign="center">
           is
         </Typography>
-        <Button variant="contained" size="large" startIcon={<ArrowUpwardIcon />}>
-          More successfull
-        </Button>
-        <Button variant="contained" size="large" startIcon={<ArrowDownwardIcon />}>
-          Less successfull
-        </Button>
+        {
+          guessed ?
+          <Typography variant="h3" component="p" color="white" textAlign="center">
+            most successfull with {
+              (typeof formatValue === 'string')
+              ? `${contender.value} ${formatValue}`
+              : `${formatValue(contender.value)}`
+            }
+          </Typography>
+          :
+          <Button variant="contained" size="large" startIcon={<ArrowUpwardIcon />} onClick={() => guessMostSuccessfull(contender)}>
+            More successfull
+          </Button>
+        }
       </Stack>
     </Box>
   )
@@ -59,34 +79,68 @@ function HomePanel({ categoryTitle } : { categoryTitle : string }) {
   )
 }
 
-function MiddleCaption({ caption } : { caption: string }) {
+function MiddleCaption({ caption, guessedRight } : { caption: string, guessedRight: boolean | undefined }) {
   return (
-    <Stack sx={styles.middleStack} spacing={6}>
+    <Stack sx={styles.middleStack} spacing={4} alignItems="center">
       <Typography variant="h4" component="h2" color="white" textAlign="center">
         In terms of...
       </Typography>
       <Typography variant="h2" component="h3" color="white" textAlign="center">
         { caption }
       </Typography>
+      {
+        guessedRight !== undefined &&
+        <Stack direction="row" spacing={2}>
+          <Typography variant="h2" component="h3" color="white">
+            You're
+          </Typography>
+          <Typography variant="h2" component="h3" color={guessedRight ? "green" : "red"}>
+            { guessedRight ? " RIGHT!" : " WRONG!"}
+          </Typography>
+        </Stack>
+      }
     </Stack>
   )
 }
 
 export default function ChooseMostSuccess() {
-  const category = getRandomElement(compareCategories)
-  const query = getRandomElement(category.queries)
-  const compared = getRandomElement(query.items)
-  const contender = getRandomElement(query.items.filter(item => item.name !== compared.name))
+  const [quiz, setQuiz] = useState(generateQuiz())
+
+  const guessMostSuccessfull = (contender: Contender): boolean => {
+    const otherContender = (contender.name === quiz.contender.left.name ? quiz.contender.right : quiz.contender.left)
+    console.log(contender.value > otherContender.value)
+    setQuiz({ ...quiz, guessedRight: contender.value > otherContender.value})
+    return (contender.value > otherContender.value)
+  }
 
   return (
     <Stack direction="row" sx={styles.root}>
-      <LeftCompared compared={compared} />
-      <RightContender contender={contender} />
-      <HomePanel categoryTitle={category.title} />
-      <MiddleCaption caption={query.caption} />
-      <Avatar alt="VS" sx={styles.vs}>
-        VS
-      </Avatar>
+      {
+        ((quiz.guessedRight === undefined) || (quiz.contender.left.value > quiz.contender.right.value)) &&
+        <SideContender
+          contender={quiz.contender.left}
+          guessMostSuccessfull={guessMostSuccessfull}
+          guessed={quiz.guessedRight !== undefined}
+          formatValue={quiz.query.formatValue}
+        />
+      }
+      {
+        ((quiz.guessedRight === undefined) || (quiz.contender.left.value < quiz.contender.right.value)) &&
+        <SideContender
+          contender={quiz.contender.right}
+          guessMostSuccessfull={guessMostSuccessfull}
+          guessed={quiz.guessedRight !== undefined}
+          formatValue={quiz.query.formatValue}
+        />
+      }
+      <HomePanel categoryTitle={quiz.category.title} />
+      <MiddleCaption caption={quiz.query.caption} guessedRight={quiz.guessedRight} />
+      {
+        quiz.guessedRight === undefined &&
+        <Avatar alt="VS" sx={styles.vs}>
+          VS
+        </Avatar>
+      }
     </Stack>
   );
 }

@@ -1,7 +1,7 @@
-import { Item } from '../types'
+import { Contender } from '../types'
 
 // https://en.wikipedia.org/wiki/Grammy_Award_records#Most_Grammys_won_by_a_rapper
-const grammyAwardsWon: Item[] = [
+const grammyAwardsWon: Contender[] = [
   {
     name: "Jay-Z",
     imageUri: "https://resize-parismatch.lanmedia.fr/r/940,628/img/var/news/storage/images/paris-match/people/un-jour-apres-avoir-rejoint-instagram-jay-z-quitte-le-reseau-social-1767783/29068327-1-fre-FR/Un-jour-apres-avoir-rejoint-Instagram-Jay-Z-quitte-le-reseau-social.jpg",

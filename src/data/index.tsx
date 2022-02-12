@@ -4,6 +4,10 @@ import football from './football'
 import movies from './movies'
 import billionaires from './billionaires'
 import countries from './countries'
+import manga from './manga'
+import videogames from './videogames'
+import IT from './IT'
+import company from './company'
 
 const compareCategories: Category[] = [
   {
@@ -25,6 +29,22 @@ const compareCategories: Category[] = [
   {
     title: "Billionaires",
     queries: billionaires
+  },
+  {
+    title: "Manga",
+    queries: manga
+  },
+  {
+    title: "Company",
+    queries: company
+  },
+  {
+    title: "Videogames",
+    queries: videogames
+  },
+  {
+    title: "IT",
+    queries: IT
   }
 ]
 

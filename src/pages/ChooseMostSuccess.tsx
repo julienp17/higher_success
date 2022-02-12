@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { Stack, Box, Avatar, Typography, Button, IconButton } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import compareCategories from '../data';
-import { Quiz, Contender, Query } from '../data/types';
-import { Link } from 'react-router-dom';
+import { Quiz, Contender } from '../data/types';
+import { Link, useNavigate } from 'react-router-dom';
 
 function getRandomElement<Type>(arr: Type[]): Type {
   return arr[Math.floor(Math.random() * arr.length)]
@@ -29,12 +30,13 @@ function generateQuiz(): Quiz {
 
 type SideContenderProps = {
   contender: Contender,
-  guessMostSuccessfull: (contender: Contender) => boolean,
-  guessed: boolean,
-  formatValue: string | ((value: number) => string)
+  guessMostSuccessfull: (contender: Contender) => void,
+  guessedRight: boolean | undefined,
+  formatValue: string | ((value: number) => string),
+  generateNewQuiz: (() => void)
 }
 
-function SideContender({ contender, guessMostSuccessfull, guessed, formatValue } : SideContenderProps) {
+function SideContender({ contender, guessMostSuccessfull, guessedRight, formatValue, generateNewQuiz } : SideContenderProps) {
   return (
     <Box sx={styles.side} >
       <img width="100%" height="100%" style={styles.bgImg} src={contender.imageUri} />
@@ -46,7 +48,11 @@ function SideContender({ contender, guessMostSuccessfull, guessed, formatValue }
           is
         </Typography>
         {
-          guessed ?
+          guessedRight === undefined ?
+          <Button variant="contained" size="large" startIcon={<ArrowUpwardIcon />} onClick={() => guessMostSuccessfull(contender)}>
+            More successfull
+          </Button>
+          :
           <Typography variant="h3" component="p" color="white" textAlign="center">
             most successfull with {
               (typeof formatValue === 'string')
@@ -54,9 +60,11 @@ function SideContender({ contender, guessMostSuccessfull, guessed, formatValue }
               : `${formatValue(contender.value)}`
             }
           </Typography>
-          :
-          <Button variant="contained" size="large" startIcon={<ArrowUpwardIcon />} onClick={() => guessMostSuccessfull(contender)}>
-            More successfull
+        }
+        {
+          guessedRight === true &&
+          <Button variant="contained" size="large" endIcon={<NavigateNextIcon />} onClick={generateNewQuiz}>
+            Next
           </Button>
         }
       </Stack>
@@ -105,12 +113,17 @@ function MiddleCaption({ caption, guessedRight } : { caption: string, guessedRig
 
 export default function ChooseMostSuccess() {
   const [quiz, setQuiz] = useState(generateQuiz())
+  const navigate = useNavigate()
 
-  const guessMostSuccessfull = (contender: Contender): boolean => {
+  const guessMostSuccessfull = (contender: Contender): void => {
     const otherContender = (contender.name === quiz.contender.left.name ? quiz.contender.right : quiz.contender.left)
-    console.log(contender.value > otherContender.value)
-    setQuiz({ ...quiz, guessedRight: contender.value > otherContender.value})
-    return (contender.value > otherContender.value)
+    const guessedRight = (contender.value > otherContender.value)
+    setQuiz({ ...quiz, guessedRight: guessedRight })
+    if (!guessedRight) {
+      setTimeout(() => {
+        navigate('/game-over')
+      }, 2000)
+    }
   }
 
   return (
@@ -120,8 +133,9 @@ export default function ChooseMostSuccess() {
         <SideContender
           contender={quiz.contender.left}
           guessMostSuccessfull={guessMostSuccessfull}
-          guessed={quiz.guessedRight !== undefined}
+          guessedRight={quiz.guessedRight}
           formatValue={quiz.query.formatValue}
+          generateNewQuiz={() => setQuiz(generateQuiz())}
         />
       }
       {
@@ -129,8 +143,9 @@ export default function ChooseMostSuccess() {
         <SideContender
           contender={quiz.contender.right}
           guessMostSuccessfull={guessMostSuccessfull}
-          guessed={quiz.guessedRight !== undefined}
+          guessedRight={quiz.guessedRight}
           formatValue={quiz.query.formatValue}
+          generateNewQuiz={() => setQuiz(generateQuiz())}
         />
       }
       <HomePanel categoryTitle={quiz.category.title} />

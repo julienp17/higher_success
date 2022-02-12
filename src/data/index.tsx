@@ -1,10 +1,15 @@
 import { Category } from './types'
 import animals from './animals'
-import music from './music'
-import football from './football'
-import movies from './movies'
+import audience from './audience'
 import billionaires from './billionaires'
+import company from './company'
 import countries from './countries'
+import football from './football'
+import IT from './IT'
+import manga from './manga'
+import movies from './movies'
+import music from './music'
+import videogames from './videogames'
 
 const compareCategories: Category[] = [
   {
@@ -12,25 +17,45 @@ const compareCategories: Category[] = [
     queries: animals
   },
   {
-    title: "Music",
-    queries: music
+    title: "Audience",
+    queries: audience
   },
   {
-    title: "Football",
-    queries: football
+    title: "Billionaires",
+    queries: billionaires
   },
   {
-    title: "Movies",
-    queries: movies
+    title: "Company",
+    queries: company
   },
   {
     title: "Countries",
     queries: countries
   },
   {
-    title: "Billionaires",
-    queries: billionaires
+    title: "Football",
+    queries: football
   },
+  {
+    title: "IT",
+    queries: IT
+  },
+  {
+    title: "Manga",
+    queries: manga
+  },
+  {
+    title: "Movies",
+    queries: movies
+  },
+  {
+    title: "Music",
+    queries: music
+  },
+  {
+    title: "Video games",
+    queries: videogames
+  }
 ]
 
 export default compareCategories

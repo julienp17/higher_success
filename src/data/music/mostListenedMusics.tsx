@@ -20,7 +20,7 @@ const mostListenedMusics: Contender[] = [
   {
     name: "Billie Eilish, bad guy",
     imageUri: "https://parismatch.be/app/uploads/2019/10/Billie-Eilish-bad-guy-2019-03-29-Actu.jpg",
-    value: 1_957_000_000 
+    value: 1_957_000_000
   },
   {
     name: "Dua Lipa, Don’t Start Now",

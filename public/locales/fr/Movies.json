@@ -1,3 +1,9 @@
 {
-  
+    "Movies": "Films",
+    "highest_gross": "Revenu le plus élevé",
+    "star_wars": "Star Wars: Le Réveil de la Force",
+    "the_lion_king": "Le Roi Lion",
+    "frozen": "La Reine des Neiges",
+    "pirates_of_the_caribbean": "Pirates des Caraïbes: Le Secret du coffre maudit",
+    "harry_potter": "Harry Potter à l'école des sorciers"
 }

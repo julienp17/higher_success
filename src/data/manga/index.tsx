@@ -4,7 +4,7 @@ import numeral from "numeral";
 
 const manga: Query[] = [
   {
-    caption: "Most Sales",
+    caption: "most_sales",
     items: mostSales,
     formatValue: (value: number) => `${numeral(value).format('($ 0.00 a)')}`
   }

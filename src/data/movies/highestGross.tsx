@@ -18,7 +18,7 @@ const highestGross: Contender[] = [
     value: 2_187_425_379
   },
   {
-    name: "Star Wars: The Force Awakens",
+    name: "star_wars",
     imageUri: "https://img.apmcdn.org/1bfcfae1b9b4eea8839ff6003727b1326ffb77c9/uncropped/b1623b-20151210-force-awakens.jpg",
     value: 2_068_223_624
   },
@@ -38,7 +38,7 @@ const highestGross: Contender[] = [
     value: 1_671_713_208
   },
   {
-    name: "The Lion King",
+    name: "the_lion_king",
     imageUri: "https://static01.nyt.com/images/2019/07/21/arts/21lionking-notebook1/21lionking-notebook1-superJumbo.jpg",
     value: 1_656_943_394
   },
@@ -53,7 +53,7 @@ const highestGross: Contender[] = [
     value: 1_516_045_911,
   },
   {
-    name: "Frozen",
+    name: "frozen",
     imageUri: "http://d279m997dpfwgl.cloudfront.net/wp/2014/07/QUEEN-ELSA-1000x547.jpg",
     value: 1_290_000_000
   },
@@ -73,12 +73,12 @@ const highestGross: Contender[] = [
     value: 1_074_251_311
   },
   {
-    name: "Pirates of the Caribbean: Dead Man's Chest",
+    name: "pirates_of_the_caribbean",
     imageUri: "https://www.intofilm.org/intofilm-production/scaledcropped/970x546https%3A/s3-eu-west-1.amazonaws.com/images.cdn.filmclub.org/film__4053-pirates-of-the-caribbean-dead-mans-chest--hi_res-e9c15cd0.jpg/film__4053-pirates-of-the-caribbean-dead-mans-chest--hi_res-e9c15cd0.jpg",
     value: 1_066_179_725
   },
   {
-    name: "Harry Potter and the Philosopher's Stone",
+    name: "harry_potter",
     imageUri: "https://insidepulse.com/wp-content/uploads/2021/08/harry-potter-1-2_668_330_80_int_s_c1.jpg",
     value: 1_006_968_171,
   }

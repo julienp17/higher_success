@@ -38,7 +38,7 @@ const mostSales: Contender[] = [
     value: 51_810_000
   },
   {
-    name: "Pokémon Red/Green/Blue/Yellow",
+    name: "pokemon_1g",
     imageUri: "https://i1.sndcdn.com/artworks-000497137209-nrdqb0-t500x500.jpg",
     value: 47_520_000
   },
@@ -103,7 +103,7 @@ const mostSales: Contender[] = [
     value: 25_000_000
   },
   {
-    name: "Pokémon Diamond/Pearl/Platinum",
+    name: "pokemon_4g",
     imageUri: "https://d2ed948asmbmr8.cloudfront.net/static/media/products/pokemon-platinum-perl-diamon-ds.jpg",
     value: 24_730_000
   },

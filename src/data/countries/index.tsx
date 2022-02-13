@@ -15,11 +15,11 @@ const countries: Query[] = [
     items: mostOlympicGoldMedals,
     formatValue: "gold_medals"
   },
-  {
-    caption: "longest_penis",
-    items: longest,
-    formatValue: "cm"
-  },
+  // {
+  //   caption: "longest_penis",
+  //   items: longest,
+  //   formatValue: "cm"
+  // },
 ]
 
 export default countries

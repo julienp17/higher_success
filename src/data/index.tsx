@@ -16,46 +16,46 @@ const compareCategories: Category[] = [
     title: "Animals",
     queries: animals
   },
-  {
-    title: "Audience",
-    queries: audience
-  },
-  {
-    title: "Billionaires",
-    queries: billionaires
-  },
-  {
-    title: "Company",
-    queries: company
-  },
-  {
-    title: "Countries",
-    queries: countries
-  },
-  {
-    title: "Football",
-    queries: football
-  },
-  {
-    title: "IT",
-    queries: IT
-  },
-  {
-    title: "Manga",
-    queries: manga
-  },
-  {
-    title: "Movies",
-    queries: movies
-  },
-  {
-    title: "Music",
-    queries: music
-  },
-  {
-    title: "Video games",
-    queries: videogames
-  }
+  // {
+  //   title: "Audience",
+  //   queries: audience
+  // },
+  // {
+  //   title: "Billionaires",
+  //   queries: billionaires
+  // },
+  // {
+  //   title: "Company",
+  //   queries: company
+  // },
+  // {
+  //   title: "Countries",
+  //   queries: countries
+  // },
+  // {
+  //   title: "Football",
+  //   queries: football
+  // },
+  // {
+  //   title: "IT",
+  //   queries: IT
+  // },
+  // {
+  //   title: "Manga",
+  //   queries: manga
+  // },
+  // {
+  //   title: "Movies",
+  //   queries: movies
+  // },
+  // {
+  //   title: "Music",
+  //   queries: music
+  // },
+  // {
+  //   title: "Video games",
+  //   queries: videogames
+  // }
 ]
 
 export default compareCategories

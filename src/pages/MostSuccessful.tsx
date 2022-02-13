@@ -19,10 +19,10 @@ type SideContenderProps = {
   guessMostSuccessfull: (contender: Contender) => void,
   guessedRight: boolean | undefined,
   formatValue: string | ((value: number) => string),
-  generateNewQuiz: (() => void)
+  goNext: (() => void)
 }
 
-function SideContender({ contender, namespace, guessMostSuccessfull, guessedRight, formatValue, generateNewQuiz } : SideContenderProps) {
+function SideContender({ contender, namespace, guessMostSuccessfull, guessedRight, formatValue, goNext } : SideContenderProps) {
   const { t, i18n } = useTranslation(['mostSuccessful', 'common', namespace])
 
   return (
@@ -56,7 +56,7 @@ function SideContender({ contender, namespace, guessMostSuccessfull, guessedRigh
         }
         {
           guessedRight === true &&
-          <Button variant="contained" size="large" endIcon={<NavigateNextIcon />} onClick={generateNewQuiz}>
+          <Button variant="contained" size="large" endIcon={<NavigateNextIcon />} onClick={goNext}>
             { t('next') }
           </Button>
         }
@@ -114,6 +114,9 @@ export default function MostSuccessFulPage() {
   }, [])
 
   const guessMostSuccessfull = (contender: Contender): void => {
+    if (quiz === undefined) {
+      return
+    }
     const otherContender = (contender.name === quiz.contender.left.name ? quiz.contender.right : quiz.contender.left)
     const guessedRight = (contender.value > otherContender.value)
 
@@ -126,18 +129,29 @@ export default function MostSuccessFulPage() {
       }, 2500)
     }
   }
+  const goNext = () => {
+    const nextQuiz = generateQuiz(categories, setCategories)
+    if (nextQuiz === undefined) {
+      navigate('/success')
+    } else {
+      setQuiz(nextQuiz)
+    }
+  }
 
+  if (quiz === undefined) {
+    return null
+  }
   return (
     <Stack direction="row" sx={styles.root}>
       {
-        ((quiz.guessedRight === undefined) || (quiz.contender.left.value > quiz.contender.right.value)) &&
+        ((quiz?.guessedRight === undefined) || (quiz.contender.left.value > quiz.contender.right.value)) &&
         <SideContender
           contender={quiz.contender.left}
           namespace={quiz.category.title}
           guessMostSuccessfull={guessMostSuccessfull}
           guessedRight={quiz.guessedRight}
           formatValue={quiz.query.formatValue}
-          generateNewQuiz={() => setQuiz(generateQuiz(categories, setCategories))}
+          goNext={goNext}
         />
       }
       {
@@ -148,10 +162,13 @@ export default function MostSuccessFulPage() {
           guessMostSuccessfull={guessMostSuccessfull}
           guessedRight={quiz.guessedRight}
           formatValue={quiz.query.formatValue}
-          generateNewQuiz={() => setQuiz(generateQuiz(categories, setCategories))}
+          goNext={goNext}
         />
       }
-      <HomePanel categoryTitle={quiz.category.title} />
+      {
+        !(quiz.guessedRight === false) &&
+        <HomePanel categoryTitle={quiz.category.title} />
+      }
       <LanguageSwitcher />
       <CurrentScore />
       <MiddleCaption caption={quiz.query.caption} guessedRight={quiz.guessedRight} />

@@ -4,42 +4,42 @@ import { Contender } from '../types'
 const mostUsed: Contender[] = [
   {
     name: "Python",
-    imageUri: "https://ci-ia.groupecerco.com/web/image/23586/1200px-Python-logo-notext.svg.png",
+    imageUri: "https://c4.wallpaperflare.com/wallpaper/645/96/47/python-programming-programming-programming-language-code-hd-wallpaper-preview.jpg",
     value: 30.21
   },
   {
     name: "Java",
-    imageUri: "https://futurelinx.fr/wp-content/uploads/2020/01/java.jpg",
+    imageUri: "https://i.pinimg.com/originals/74/7b/e2/747be268fd2d648bac2915b502461e41.jpg",
     value: 17.82
   },
   {
     name: "JavaScript",
-    imageUri: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/1200px-Unofficial_JavaScript_logo_2.svg.png",
+    imageUri: "https://i.imgur.com/KRwfMz3.png",
     value: 9.16
   },
   {
     name: "C#",
-    imageUri: "https://i2.wp.com/leblogducodeur.fr/wp-content/uploads/2020/02/c.png?fit=1200%2C630&ssl=1",
+    imageUri: "https://1.bp.blogspot.com/-KpjmjNUdh54/X1jkNv1edtI/AAAAAAAAByg/fHShhUJAQnceQJlO8z8suMn7p2pedR5iwCLcBGAsYHQ/s1920/csharp.jpg",
     value: 7.53,
   },
   {
     name: "C/C++",
-    imageUri: "https://img2.freepng.fr/20180408/pew/kisspng-the-c-programming-language-computer-icons-comput-programming-5acadc2dec0be9.0824244915232440779669.jpg",
+    imageUri: "https://c4.wallpaperflare.com/wallpaper/853/16/894/c-plus-plus-code-development-web-development-wallpaper-thumb.jpg",
     value: 6.82,
   },
   {
     name: "PHP",
-    imageUri: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/PHP-logo.svg/1200px-PHP-logo.svg.png",
+    imageUri: "https://mycount.net/wp-content/uploads/2021/10/E9-SBpbXEAI6owS.png",
     value: 5.84,
   },
   {
     name: "R",
-    imageUri: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/R_logo.svg/640px-R_logo.svg.png",
+    imageUri: "https://quedulourd.com/wp-content/uploads/2020/09/R-Programming-A-Z%E2%84%A2-R-For-Data-Science-With-Real-Exercises-udemy-course-free-download-freetutorialsus.com_.jpg",
     value: 3.81
   },
   {
     name: "Swift",
-    imageUri: "https://img2.freepng.fr/20180422/hxw/kisspng-swift-programming-language-apple-natural-ecological-food-logo-templates-download-5add30355534a7.530860331524445237349.jpg",
+    imageUri: "https://miro.medium.com/max/1200/1*OgeU8HPo8TFF1cZQ-4XjJw.jpeg",
     value: 2.03,
   },
   {
@@ -49,22 +49,22 @@ const mostUsed: Contender[] = [
   },
   {
     name: "TypeScript",
-    imageUri: "https://iconape.com/wp-content/png_logo_vector/typescript.png",
+    imageUri: "https://www.freecodecamp.org/news/content/images/size/w2000/2020/02/typescript.png",
     value: 1.63
   },
   {
     name: "Go",
-    imageUri: "https://humancoders-formations.s3.amazonaws.com/uploads/course/logo/87/formation-go",
+    imageUri: "https://wallpapercave.com/wp/wp7041156.png",
     value: 1.52,
   },
   {
     name: "Rust",
-    imageUri: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Rust_programming_language_black_logo.svg/1200px-Rust_programming_language_black_logo.svg.png",
+    imageUri: "https://images.ctfassets.net/3prze68gbwl1/asset-17suaysk1qa1jtc/1edfe4a84bc1ab70f92750c99710a779/chat-app-rust-language-tutorial.png",
     value: 0.94
   },
   {
     name: "Ruby",
-    imageUri: "https://img2.freepng.fr/20180614/yaw/kisspng-ruby-programming-language-programmer-computer-prog-ruby-lin-5b227d58c7f551.679205971528986968819.jpg",
+    imageUri: "https://res.cloudinary.com/practicaldev/image/fetch/s--jTX-RVuQ--/c_imagga_scale,f_auto,fl_progressive,h_900,q_auto,w_1600/https://dev-to-uploads.s3.amazonaws.com/i/i5dm7hap45ice8wwigi7.png",
     value: 0.89
   }
 ]

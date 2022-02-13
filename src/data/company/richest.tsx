@@ -39,7 +39,7 @@ const richest: Contender[] = [
   },
   {
     name: "Taiwan Semiconductor",
-    imageUri: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/TSMC-Logo.svg/1200px-TSMC-Logo.svg.png",
+    imageUri: "https://www.taipeitimes.com/images/2021/03/02/P12-210302-314.jpg",
     value: 606_000_000_000
   },
   {

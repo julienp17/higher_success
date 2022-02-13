@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import { Button, Stack, Container, Typography, Box, Dialog, DialogTitle } from '@mui/material';
+import { Button, Stack, Container, Typography, Box } from '@mui/material';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import raining_money from '../assets/raining_money.gif'
 import logo from '../assets/logo.png'
@@ -8,15 +8,21 @@ import LanguageSwitcher from '../components/LanguageSwitcher';
 import ChooseCategoriesDialog from '../components/ChooseCategories';
 import compareCategories from '../data/index'
 import { useTranslation } from 'react-i18next';
+import categoriesAtom from '../recoil/atoms/categories';
+import { useSetRecoilState } from 'recoil';
 
 export default function LandingPage() {
   const { t } = useTranslation('landingPage')
+  const setCategories = useSetRecoilState(categoriesAtom)
   const [open, setOpen] = useState(false)
   const [checked, setChecked] = useState<string[]>(compareCategories.map(category =>
     category.title
   ))
 
   const onClose = () => {
+    setCategories(compareCategories.filter(category =>
+      checked.includes(category.title)
+    ))
     setOpen(false)
   }
   const navigate = useNavigate()

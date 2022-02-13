@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Stack, Box, Avatar, Typography, Button } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
@@ -8,6 +8,10 @@ import { Contender } from '../data/types';
 import { Link, useNavigate } from 'react-router-dom';
 import { generateQuiz } from '../utils'
 import LanguageSwitcher from '../components/LanguageSwitcher';
+import categoriesAtom from '../recoil/atoms/categories';
+import { useRecoilState, useSetRecoilState } from "recoil"
+import CurrentScore from '../components/CurrentScore';
+import currentScoreAtom from '../recoil/atoms/currentScore';
 
 type SideContenderProps = {
   contender: Contender,
@@ -100,18 +104,26 @@ function MiddleCaption({ caption, guessedRight } : { caption: string, guessedRig
 }
 
 export default function MostSuccessFulPage() {
-  const [quiz, setQuiz] = useState(() => generateQuiz())
+  const setCurrentScore = useSetRecoilState(currentScoreAtom)
+  const [categories, setCategories] = useRecoilState(categoriesAtom)
+  const [quiz, setQuiz] = useState(() => generateQuiz(categories, setCategories))
   const navigate = useNavigate()
+
+  useEffect(() => {
+    setCurrentScore(0)
+  }, [])
 
   const guessMostSuccessfull = (contender: Contender): void => {
     const otherContender = (contender.name === quiz.contender.left.name ? quiz.contender.right : quiz.contender.left)
     const guessedRight = (contender.value > otherContender.value)
 
     setQuiz({ ...quiz, guessedRight: guessedRight })
-    if (!guessedRight) {
+    if (guessedRight) {
+      setCurrentScore((currentScore) => currentScore + 1)
+    } else {
       setTimeout(() => {
         navigate('/game-over')
-      }, 4000)
+      }, 2500)
     }
   }
 
@@ -125,7 +137,7 @@ export default function MostSuccessFulPage() {
           guessMostSuccessfull={guessMostSuccessfull}
           guessedRight={quiz.guessedRight}
           formatValue={quiz.query.formatValue}
-          generateNewQuiz={() => setQuiz(generateQuiz())}
+          generateNewQuiz={() => setQuiz(generateQuiz(categories, setCategories))}
         />
       }
       {
@@ -136,11 +148,12 @@ export default function MostSuccessFulPage() {
           guessMostSuccessfull={guessMostSuccessfull}
           guessedRight={quiz.guessedRight}
           formatValue={quiz.query.formatValue}
-          generateNewQuiz={() => setQuiz(generateQuiz())}
+          generateNewQuiz={() => setQuiz(generateQuiz(categories, setCategories))}
         />
       }
       <HomePanel categoryTitle={quiz.category.title} />
       <LanguageSwitcher />
+      <CurrentScore />
       <MiddleCaption caption={quiz.query.caption} guessedRight={quiz.guessedRight} />
       {
         quiz.guessedRight === undefined &&

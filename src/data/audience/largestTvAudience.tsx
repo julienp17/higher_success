@@ -3,7 +3,7 @@ import { Contender } from '../types'
 // manque lien
 const largestTvAudience: Contender[] = [
   {
-    name: "Lady Di's funeral (1997)",
+    name: "lady_di_funeral_1997",
     imageUri: "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/gettyimages-450287035-1501103110.jpg",
     value: 2_500_000_000,
   },

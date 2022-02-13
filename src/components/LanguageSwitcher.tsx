@@ -1,11 +1,5 @@
-import React, { useState } from 'react';
-import { Stack, Box, Avatar, Typography, Button, Select, FormControl, InputLabel, MenuItem } from '@mui/material';
-import HomeIcon from '@mui/icons-material/Home';
-import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
-import NavigateNextIcon from '@mui/icons-material/NavigateNext';
-import compareCategories from '../data';
-import { Quiz, Contender } from '../data/types';
-import { Link, useNavigate } from 'react-router-dom';
+import React from 'react';
+import { Stack, Select, FormControl, MenuItem } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import FranceFlag from '../assets/france_flag.png'
 import USAFlag from '../assets/usa_flag.png'
@@ -19,7 +13,7 @@ export default function LanguageSwitcher() {
       <FormControl variant="standard" fullWidth>
         <Select
           id="language_select"
-          renderValue={(value) => null}
+          renderValue={() => null}
           disableUnderline
           value={i18n.languages[0]}
           onChange={event => i18n.changeLanguage(event.target.value as string)}

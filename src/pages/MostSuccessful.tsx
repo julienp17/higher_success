@@ -11,21 +11,22 @@ import LanguageSwitcher from '../components/LanguageSwitcher';
 
 type SideContenderProps = {
   contender: Contender,
+  namespace: string,
   guessMostSuccessfull: (contender: Contender) => void,
   guessedRight: boolean | undefined,
   formatValue: string | ((value: number) => string),
   generateNewQuiz: (() => void)
 }
 
-function SideContender({ contender, guessMostSuccessfull, guessedRight, formatValue, generateNewQuiz } : SideContenderProps) {
-  const { t, i18n } = useTranslation(['mostSuccessful', 'common'])
+function SideContender({ contender, namespace, guessMostSuccessfull, guessedRight, formatValue, generateNewQuiz } : SideContenderProps) {
+  const { t, i18n } = useTranslation(['mostSuccessful', 'common', namespace])
 
   return (
     <Box sx={styles.side} >
       <img width="100%" height="100%" style={styles.bgImg} src={contender.imageUri} />
       <Stack spacing={2} alignItems="center" maxWidth="md" >
         <Typography variant="h3" component="h1" color="white" textAlign="center">
-          { `"${contender.name}"` }
+          { t(contender.name, { ns: namespace }) }
         </Typography>
         <Typography variant="subtitle1" component="p" color="white" textAlign="center">
           { i18n.languages[0] === "en" ? t("is", { ns: "common" }) : t('has', { ns: "common" }) }
@@ -115,6 +116,7 @@ export default function MostSuccessFulPage() {
         ((quiz.guessedRight === undefined) || (quiz.contender.left.value > quiz.contender.right.value)) &&
         <SideContender
           contender={quiz.contender.left}
+          namespace={quiz.category.title}
           guessMostSuccessfull={guessMostSuccessfull}
           guessedRight={quiz.guessedRight}
           formatValue={quiz.query.formatValue}
@@ -125,6 +127,7 @@ export default function MostSuccessFulPage() {
         ((quiz.guessedRight === undefined) || (quiz.contender.left.value < quiz.contender.right.value)) &&
         <SideContender
           contender={quiz.contender.right}
+          namespace={quiz.category.title}
           guessMostSuccessfull={guessMostSuccessfull}
           guessedRight={quiz.guessedRight}
           formatValue={quiz.query.formatValue}

@@ -8,7 +8,7 @@ const strongestBite: Contender[] = [
     value: 5785
   },
   {
-    name: "Lyon",
+    name: "Lion",
     imageUri: "https://lareleveetlapeste.fr/wp-content/uploads/2019/01/image-couv-site-92922.jpg",
     value: 4000
   },

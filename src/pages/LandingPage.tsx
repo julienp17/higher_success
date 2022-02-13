@@ -4,6 +4,7 @@ import { Button, Stack, Container, Typography, Box } from '@mui/material';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import raining_money from '../assets/raining_money.gif'
 import logo from '../assets/logo.png'
+import LanguageSwitcher from '../components/LanguageSwitcher';
 
 export default function LandingPage() {
   const navigate = useNavigate()
@@ -24,6 +25,7 @@ export default function LandingPage() {
           </Button>
         </Stack>
       </Container>
+      <LanguageSwitcher />
     </Box>
   );
 }

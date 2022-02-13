@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Button, Stack, Container, Typography, Box } from '@mui/material';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import crying_man from '../assets/crying_man.gif'
+import LanguageSwitcher from '../components/LanguageSwitcher';
 
 export default function GameOverPage() {
   const navigate = useNavigate()
@@ -28,6 +29,7 @@ export default function GameOverPage() {
           </Button>
         </Stack>
       </Container>
+      <LanguageSwitcher />
     </Box>
   );
 }

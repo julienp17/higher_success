@@ -1,32 +1,13 @@
 import React, { useState } from 'react';
-import { Stack, Box, Avatar, Typography, Button, IconButton } from '@mui/material';
+import { useTranslation } from 'react-i18next';
+import { Stack, Box, Avatar, Typography, Button, Select, FormControl, InputLabel, MenuItem } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
-import compareCategories from '../data';
-import { Quiz, Contender } from '../data/types';
+import { Contender } from '../data/types';
 import { Link, useNavigate } from 'react-router-dom';
-
-function getRandomElement<Type>(arr: Type[]): Type {
-  return arr[Math.floor(Math.random() * arr.length)]
-}
-
-function generateQuiz(): Quiz {
-  const category = getRandomElement(compareCategories)
-  const query = getRandomElement(category.queries)
-  const compared = getRandomElement(query.items)
-  const contender = getRandomElement(query.items.filter(item => item.name !== compared.name))
-
-  return ({
-    category: category,
-    query: query,
-    contender: {
-      left: compared,
-      right: contender
-    },
-    guessedRight: undefined
-  })
-}
+import { generateQuiz } from '../utils'
+import LanguageSwitcher from '../components/LanguageSwitcher';
 
 type SideContenderProps = {
   contender: Contender,
@@ -37,20 +18,22 @@ type SideContenderProps = {
 }
 
 function SideContender({ contender, guessMostSuccessfull, guessedRight, formatValue, generateNewQuiz } : SideContenderProps) {
+  const { t, i18n } = useTranslation(['mostSuccessful', 'common'])
+
   return (
     <Box sx={styles.side} >
       <img width="100%" height="100%" style={styles.bgImg} src={contender.imageUri} />
-      <Stack spacing={2} alignItems="center" >
+      <Stack spacing={2} alignItems="center" maxWidth="md" >
         <Typography variant="h3" component="h1" color="white" textAlign="center">
           { `"${contender.name}"` }
         </Typography>
-        <Typography variant="h6" component="p" color="white" textAlign="center">
-          is
+        <Typography variant="subtitle1" component="p" color="white" textAlign="center">
+          { i18n.languages[0] === "en" ? t("is", { ns: "common" }) : t('has', { ns: "common" }) }
         </Typography>
         {
           guessedRight === undefined ?
           <Button variant="contained" size="large" startIcon={<ArrowUpwardIcon />} onClick={() => guessMostSuccessfull(contender)}>
-            More successfull
+            { t('more_successful') }
           </Button>
           :
           <Typography variant="h3" component="p" color="white" textAlign="center">
@@ -73,6 +56,8 @@ function SideContender({ contender, guessMostSuccessfull, guessedRight, formatVa
 }
 
 function HomePanel({ categoryTitle } : { categoryTitle : string }) {
+  const { t } = useTranslation('mostSuccessful')
+
   return (
     <Stack sx={styles.homePanel} direction="row" spacing={2} alignItems="center">
       <Link to='/'>
@@ -80,18 +65,20 @@ function HomePanel({ categoryTitle } : { categoryTitle : string }) {
           <HomeIcon />
         </Button>
       </Link>
-      <Typography variant="h6" component="h1" color="white" textAlign="center">
-        Category: { categoryTitle }
+      <Typography variant="subtitle1" component="h1" color="white" textAlign="center">
+        { t('category') + ':' } { categoryTitle }
       </Typography>
     </Stack>
   )
 }
 
 function MiddleCaption({ caption, guessedRight } : { caption: string, guessedRight: boolean | undefined }) {
+  const { t } = useTranslation('mostSuccessful')
+
   return (
     <Stack sx={styles.middleStack} spacing={4} alignItems="center">
-      <Typography variant="h6" component="h6" color="white" textAlign="center">
-        In terms of...
+      <Typography variant="subtitle1" component="h6" color="white" textAlign="center">
+        { t('in_terms_of') }
       </Typography>
       <Typography variant="h2" component="h3" color="white" textAlign="center">
         { caption }
@@ -106,7 +93,7 @@ function MiddleCaption({ caption, guessedRight } : { caption: string, guessedRig
   )
 }
 
-export default function ChooseMostSuccess() {
+export default function MostSuccessFulPage() {
   const [quiz, setQuiz] = useState(generateQuiz())
   const navigate = useNavigate()
 
@@ -145,6 +132,7 @@ export default function ChooseMostSuccess() {
         />
       }
       <HomePanel categoryTitle={quiz.category.title} />
+      <LanguageSwitcher />
       <MiddleCaption caption={quiz.query.caption} guessedRight={quiz.guessedRight} />
       {
         quiz.guessedRight === undefined &&

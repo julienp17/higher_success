@@ -33,6 +33,11 @@ const mostGoalsForFrance: Contender[] = [
     value: 34,
   },
   {
+    name: "Zinédine Zidane",
+    imageUri: "https://cdn.football365.fr/wp-content/uploads/se/2017/10/bleus_zidane-670x370.jpg",
+    value: 31
+  },
+  {
     name: "Jean-Pierre Papin",
     imageUri: "https://images.daznservices.com/di/library/goal_arabic/17/66/jean-pierre-papin-france-belgium-1986-fifa-world-cup-3rd-place-play-off_mr0dl6zq1uzy1sjkacyud95fw.jpg?t=2032536060",
     value: 30,

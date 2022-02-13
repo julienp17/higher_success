@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Stack, Box, Avatar, Typography, Button, Select, FormControl, InputLabel, MenuItem } from '@mui/material';
+import { Stack, Box, Avatar, Typography, Button } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
@@ -24,21 +24,26 @@ function SideContender({ contender, namespace, guessMostSuccessfull, guessedRigh
   return (
     <Box sx={styles.side} >
       <img width="100%" height="100%" style={styles.bgImg} src={contender.imageUri} />
-      <Stack spacing={2} alignItems="center" maxWidth="md" >
-        <Typography variant="h3" component="h1" color="white" textAlign="center">
+      <Stack spacing={2} alignItems="center" maxWidth="sm" sx={{ mt: (guessedRight !== undefined) ? 25 : 0 }} >
+        <Typography variant="h4" component="h1" color="white" textAlign="center">
           { t(contender.name, { ns: namespace }) }
-        </Typography>
-        <Typography variant="subtitle1" component="p" color="white" textAlign="center">
-          { i18n.languages[0] === "en" ? t("is", { ns: "common" }) : t('has', { ns: "common" }) }
         </Typography>
         {
           guessedRight === undefined ?
-          <Button variant="contained" size="large" startIcon={<ArrowUpwardIcon />} onClick={() => guessMostSuccessfull(contender)}>
-            { t('more_successful') }
-          </Button>
+          <>
+            <Typography variant="subtitle1" component="p" color="white" textAlign="center">
+              { i18n.languages[0] === "en" ? t("is", { ns: "common" }) : t('has', { ns: "common" }) }
+            </Typography>
+            <Button variant="contained" size="large" startIcon={<ArrowUpwardIcon />} onClick={() => guessMostSuccessfull(contender)}>
+              { t('more_successful') }
+            </Button>
+          </>
           :
           <Typography variant="h3" component="p" color="white" textAlign="center">
-            most successfull with {
+            { i18n.languages[0] === "en" ? t("is", { ns: "common" }) : t('has', { ns: "common" }) }
+            { ' '}
+            { t('most_successful_with') + ' '}
+            {
               (typeof formatValue === 'string')
               ? `${contender.value} ${formatValue}`
               : `${formatValue(contender.value)}`
@@ -48,7 +53,7 @@ function SideContender({ contender, namespace, guessMostSuccessfull, guessedRigh
         {
           guessedRight === true &&
           <Button variant="contained" size="large" endIcon={<NavigateNextIcon />} onClick={generateNewQuiz}>
-            Next
+            { t('next') }
           </Button>
         }
       </Stack>
@@ -87,7 +92,7 @@ function MiddleCaption({ caption, guessedRight } : { caption: string, guessedRig
       {
         guessedRight !== undefined &&
         <Typography variant="h2" component="h3" color={guessedRight ? "green" : "red"}>
-          { guessedRight ? "RIGHT!" : "WRONG!"}
+          { (guessedRight ? t("right") : t("wrong")) + '!'}
         </Typography>
       }
     </Stack>
@@ -95,7 +100,7 @@ function MiddleCaption({ caption, guessedRight } : { caption: string, guessedRig
 }
 
 export default function MostSuccessFulPage() {
-  const [quiz, setQuiz] = useState(generateQuiz())
+  const [quiz, setQuiz] = useState(() => generateQuiz())
   const navigate = useNavigate()
 
   const guessMostSuccessfull = (contender: Contender): void => {
@@ -106,7 +111,7 @@ export default function MostSuccessFulPage() {
     if (!guessedRight) {
       setTimeout(() => {
         navigate('/game-over')
-      }, 2000)
+      }, 4000)
     }
   }
 

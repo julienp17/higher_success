@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { Button, Stack, Container, Typography, Box } from '@mui/material';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
-import raining_money from '../assets/raining_money.gif'
-import logo from '../assets/logo.png'
+import home_background from '../assets/HomeBackground.gif'
+import logo from '../assets/HomeLogo.png'
 import LanguageSwitcher from '../components/LanguageSwitcher';
 import ChooseCategoriesDialog from '../components/ChooseCategories';
 import compareCategories from '../data/index'
@@ -21,7 +21,7 @@ export default function LandingPage() {
     <Box sx={backgroundStyle}>
       <Container component="main" maxWidth="md" sx={{ mb: 10 }} >
         <Stack spacing={4} sx={{ alignItems: "center" }}>
-          <img src={logo} alt="Most successfull logo" style={{ width: 250, height: 250 }}/>
+          <img src={logo} alt="Most successfull logo" style={{ width: 820, height: 350 }}/>
           <Typography variant="h5" component="h2" gutterBottom color="white"  textAlign="center">
             { t('caption') }
           </Typography>
@@ -47,5 +47,5 @@ const backgroundStyle = {
   flexDirection: "column",
   justifyContent: "center",
   minHeight: "100vh",
-  background: `center / cover no-repeat url(${raining_money})`
+  background: `center / cover no-repeat url(${home_background})`
 }

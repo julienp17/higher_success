@@ -4,7 +4,7 @@ import numeral from "numeral";
 
 const videogames: Query[] = [
   {
-    caption: "Most sales",
+    caption: "most_sales",
     items: mostSales,
     formatValue: (value: number) => `${numeral(value).format('($ 0.00 a)')}`
   }

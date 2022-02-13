@@ -102,8 +102,6 @@ const bestSellingArtists: Contender[] = [
     imageUri: "https://www.udiscovermusic.com/wp-content/uploads/2020/04/Rolling-Stones-GettyImages-74293329.jpg",
     value: 102_000_000
   },
-  
-  
   {
     name: "Ed Sheeran",
     imageUri: "https://leclaireur.fnac.com/wp-content/uploads/2021/10/870x489-6033e4151cddd-edsheeran1.jpg",

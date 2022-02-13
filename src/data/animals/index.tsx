@@ -3,7 +3,7 @@ import strongestBite from './strongestBite'
 
 const animals: Query[] = [
   {
-    caption: "Strongest bite",
+    caption: "strongest_bite",
     items: strongestBite,
     formatValue: "newtons"
   }

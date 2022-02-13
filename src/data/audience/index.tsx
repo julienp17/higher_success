@@ -4,7 +4,7 @@ import largestTvAudience from './largestTvAudience';
 
 const audience: Query[] = [
   {
-    caption: "Largest TV Audience",
+    caption: "largest_tv_audience",
     items: largestTvAudience,
     formatValue: (value: number) => `${numeral(value).format('(0.0a)')} viewers`
   }

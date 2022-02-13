@@ -53,12 +53,12 @@ const mostSales: Contender[] = [
     value: 119_000_000,
   },
   {
-    name: "Attack on Titan",
+    name: "snk",
     imageUri: "https://www.booska-p.com/wp-content/uploads/2021/10/snk-enfin-un-teaser-et-une-date-de-sortie-pour-la-fin-de-l-anime-649.jpg",
     value: 100_000_000
   },
   {
-    name: "Fist of the North Star",
+    name: "ken",
     imageUri: "https://images-na.ssl-images-amazon.com/images/I/81aZVNsh+AL.jpg",
     value: 99_000_000
   },
@@ -83,7 +83,7 @@ const mostSales: Contender[] = [
     value: 82_490_000
   },
   {
-    name: "Captain Tsubasa",
+    name: "tsubasa",
     imageUri: "https://fr.web.img6.acsta.net/pictures/20/09/09/12/05/5907319.jpg",
     value: 80_000_000,
   },

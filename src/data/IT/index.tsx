@@ -3,7 +3,7 @@ import mostUsed from "./mostUsed"
 
 const IT: Query[] = [
   {
-    caption: "Most used",
+    caption: "most_used",
     items: mostUsed,
     formatValue: "%"
   }

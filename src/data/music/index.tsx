@@ -6,17 +6,17 @@ import grammyAwardsWon from './grammyAwardsWon';
 
 const music: Query[] = [
   {
-    caption: "Most listened on Spotify",
+    caption: "most_listened_on_spotify",
     items: mostListenedMusics,
     formatValue: (value: number) => `${numeral(value).format('(0.0a)')}`
   },
   {
-    caption: "Certified records sold",
+    caption: "certified_records_sold",
     items: bestSellingArtists,
     formatValue: (value: number) => `${numeral(value).format('(0.0a)')}`
   },
   {
-    caption: "Most grammy awards won",
+    caption: "most_grammy_awards_won",
     items: grammyAwardsWon,
     formatValue: "grammies"
   }

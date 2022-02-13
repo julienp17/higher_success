@@ -4,7 +4,7 @@ import richestPeople from "./richestPeople";
 
 const billionaires: Query[] = [
   {
-    caption: "Highest networth",
+    caption: "highest_networth",
     items: richestPeople,
     formatValue: (value: number) => `${numeral(value).format('($ 0.00 a)')}`
   }

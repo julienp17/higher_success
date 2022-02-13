@@ -44,18 +44,18 @@ const compareCategories: Category[] = [
     title: "Manga",
     queries: manga
   },
-  // {
-  //   title: "Movies",
-  //   queries: movies
-  // },
-  // {
-  //   title: "Music",
-  //   queries: music
-  // },
-  // {
-  //   title: "Video games",
-  //   queries: videogames
-  // }
+  {
+    title: "Movies",
+    queries: movies
+  },
+  {
+    title: "Music",
+    queries: music
+  },
+  {
+    title: "Video games",
+    queries: videogames
+  }
 ]
 
 export default compareCategories

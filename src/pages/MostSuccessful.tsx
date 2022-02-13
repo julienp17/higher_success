@@ -19,18 +19,19 @@ type SideContenderProps = {
   namespace: string,
   guessMostSuccessfull: (contender: Contender) => void,
   guessedRight: boolean | undefined,
-  formatValue: string | ((value: number) => string),
+  unit: string,
+  formatValue: ((value: number) => string) | undefined,
   goNext: (() => void)
 }
 
-function SideContender({ contender, namespace, guessMostSuccessfull, guessedRight, formatValue, goNext } : SideContenderProps) {
+function SideContender({ contender, namespace, guessMostSuccessfull, guessedRight, formatValue, unit, goNext } : SideContenderProps) {
   const { t, i18n } = useTranslation(['mostSuccessful', 'common', namespace])
 
   return (
     <Box sx={styles.side} >
       <img width="100%" height="100%" style={styles.bgImg} src={contender.imageUri} />
-      <Stack spacing={2} alignItems="center" maxWidth="sm" sx={{ mt: (guessedRight !== undefined) ? 25 : 0 }} >
-        <Typography variant="h4" component="h1" color="white" textAlign="center">
+      <Stack spacing={2} alignItems="center" maxWidth={guessedRight === true ? "lg" : "sm"} sx={{ mt: (guessedRight !== undefined) ? 25 : 0 }} >
+        <Typography variant={guessedRight === true ? "h2" : "h4"} component="h1" color="white" textAlign="center">
           { t(contender.name, { ns: namespace }) }
         </Typography>
         {
@@ -44,16 +45,20 @@ function SideContender({ contender, namespace, guessMostSuccessfull, guessedRigh
             </Button>
           </>
           :
-          <Typography variant="h3" component="p" color="white" textAlign="center">
-            { i18n.languages[0] === "en" ? t("is", { ns: "common" }) : t('has', { ns: "common" }) }
-            { ' '}
-            { t('most_successful_with') + ' '}
-            {
-              (typeof formatValue === 'string')
-              ? `${contender.value} ${formatValue}`
-              : `${formatValue(contender.value)}`
-            }
-          </Typography>
+          <>
+            <Typography variant="subtitle1" component="p" color="white" textAlign="center">
+              {`
+                ${i18n.languages[0] === "en" ? t("is", { ns: "common" }) : t('has', { ns: "common" })}
+                ${t('most_successful_with') + ' '}
+              `}
+            </Typography>
+            <Typography variant="h3" component="p" color="white" textAlign="center">
+              {`
+                ${formatValue ? formatValue(contender.value) : contender.value}
+                ${t(unit, { ns: namespace })}
+              `}
+            </Typography>
+          </>
         }
         {
           guessedRight === true &&
@@ -66,8 +71,13 @@ function SideContender({ contender, namespace, guessMostSuccessfull, guessedRigh
   )
 }
 
-function HomePanel({ categoryTitle } : { categoryTitle : string }) {
-  const { t } = useTranslation('mostSuccessful')
+type HomePanelProps = {
+  categoryTitle: string,
+  namespace: string
+}
+
+function HomePanel({ categoryTitle, namespace } : HomePanelProps) {
+  const { t } = useTranslation(['mostSuccessful', namespace])
 
   return (
     <Stack sx={styles.homePanel} direction="row" spacing={2} alignItems="center">
@@ -77,14 +87,20 @@ function HomePanel({ categoryTitle } : { categoryTitle : string }) {
         </Button>
       </Link>
       <Typography variant="subtitle1" component="h1" color="white" textAlign="center">
-        { t('category') + ':' } { categoryTitle }
+        { t('category') + ':' } { t(categoryTitle, { ns: namespace }) }
       </Typography>
     </Stack>
   )
 }
 
-function MiddleCaption({ caption, guessedRight } : { caption: string, guessedRight: boolean | undefined }) {
-  const { t } = useTranslation('mostSuccessful')
+type MiddleCaptionProps = {
+  caption: string,
+  namespace: string,
+  guessedRight: boolean | undefined
+}
+
+function MiddleCaption({ caption, namespace, guessedRight } : MiddleCaptionProps) {
+  const { t } = useTranslation(['mostSuccessful', namespace])
 
   return (
     <Stack sx={styles.middleStack} spacing={4} alignItems="center">
@@ -92,7 +108,7 @@ function MiddleCaption({ caption, guessedRight } : { caption: string, guessedRig
         { t('in_terms_of') }
       </Typography>
       <Typography variant="h2" component="h3" color="white" textAlign="center">
-        { caption }
+        { t(caption, { ns: namespace }) }
       </Typography>
       {
         guessedRight !== undefined &&
@@ -155,6 +171,7 @@ export default function MostSuccessFulPage() {
           guessMostSuccessfull={guessMostSuccessfull}
           guessedRight={quiz.guessedRight}
           formatValue={quiz.query.formatValue}
+          unit={quiz.query.unit}
           goNext={goNext}
         />
       }
@@ -166,16 +183,24 @@ export default function MostSuccessFulPage() {
           guessMostSuccessfull={guessMostSuccessfull}
           guessedRight={quiz.guessedRight}
           formatValue={quiz.query.formatValue}
+          unit={quiz.query.unit}
           goNext={goNext}
         />
       }
       {
         !(quiz.guessedRight === false) &&
-        <HomePanel categoryTitle={quiz.category.title} />
+        <HomePanel
+          categoryTitle={quiz.category.title}
+          namespace={quiz.category.title}
+        />
       }
       <LanguageSwitcher />
       <CurrentScore />
-      <MiddleCaption caption={quiz.query.caption} guessedRight={quiz.guessedRight} />
+      <MiddleCaption
+        caption={quiz.query.caption}
+        namespace={quiz.category.title}
+        guessedRight={quiz.guessedRight}
+      />
       {
         quiz.guessedRight === undefined &&
         <Avatar alt="VS" sx={styles.vs}>

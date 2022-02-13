@@ -6,6 +6,7 @@ const manga: Query[] = [
   {
     caption: "most_sales",
     items: mostSales,
+    unit: "",
     formatValue: (value: number) => `${numeral(value).format('($ 0.00 a)')}`
   }
 ]

@@ -6,6 +6,7 @@ const billionaires: Query[] = [
   {
     caption: "highest_networth",
     items: richestPeople,
+    unit: "",
     formatValue: (value: number) => `${numeral(value).format('($ 0.00 a)')}`
   }
 ]

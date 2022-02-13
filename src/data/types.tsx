@@ -7,7 +7,8 @@ type Contender = {
 type Query = {
   caption: string,
   items: Contender[],
-  formatValue: string | ((value: number) => string)
+  unit: string,
+  formatValue?: ((value: number) => string)
 }
 
 type Category = {

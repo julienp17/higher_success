@@ -6,6 +6,7 @@ const company: Query[] = [
   {
     caption: "richest_company",
     items: richest,
+    unit: "",
     formatValue: (value: number) => `${numeral(value).format('($ 0.00 a)')}`
   }
 ]

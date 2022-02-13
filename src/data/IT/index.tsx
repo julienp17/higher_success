@@ -5,7 +5,7 @@ const IT: Query[] = [
   {
     caption: "most_used",
     items: mostUsed,
-    formatValue: "%"
+    unit: "%"
   }
 ]
 

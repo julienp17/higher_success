@@ -6,12 +6,12 @@ const football: Query[] = [
   {
     caption: "most_trophies_won",
     items: mostTrophiesPlayer,
-    formatValue: "trophies_won"
+    unit: "trophies_won",
   },
   {
-    caption: "Most goals for France",
+    caption: "most_goals_for_france",
     items: mostGoalsForFrance,
-    formatValue: "_goals"
+    unit: "_goals"
   }
 ]
 

@@ -9,7 +9,7 @@ const richest: Contender[] = [
   },
   {
     name: "Microsoft",
-    imageUri: "https://news.microsoft.com/wp-content/uploads/prod/sites/113/2017/06/Microsoft-logo_rgb_c-gray.png",
+    imageUri: "https://wallup.net/wp-content/uploads/2017/11/17/262616-Windows_10-Microsoft-operating_systems.jpg",
     value: 2_140_000_000_000
   },
   {
@@ -29,7 +29,7 @@ const richest: Contender[] = [
   },
   {
     name: "Facebook",
-    imageUri: "https://img.generation-nt.com/facebook_01662445.png",
+    imageUri: "https://www.golfdelarosiere.com/wp-content/uploads/2015/04/2013-10-Facebook-Logo-Wallpaper-Background-Dekstop1.jpg",
     value: 992_000_000_000,
   },
   {

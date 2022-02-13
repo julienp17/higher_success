@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Dialog, DialogTitle, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Checkbox } from '@mui/material';
 import compareCategories from '../data/index'
 import { Category } from '../data/types';
+import { useRecoilState } from 'recoil';
+import selectedCategoriesAtom from '../recoil/atoms/selectedCategories';
 
 type CategoryItemProps = {
   category: Category,
@@ -31,23 +33,22 @@ function CategoryItem({ category, checked, onToggle } : CategoryItemProps) {
 
 type DialogProps = {
   open: boolean,
-  onClose: () => void,
-  checked: string[],
-  setChecked: React.Dispatch<React.SetStateAction<string[]>>
+  onClose: () => void
 }
 
-export default function ChooseCategoriesDialog({ open, onClose, checked, setChecked } : DialogProps) {
+export default function ChooseCategoriesDialog({ open, onClose } : DialogProps) {
+  const [selectedCategories, setSelectedCategories] = useRecoilState(selectedCategoriesAtom)
+
   const handleToggle = (category: string) => {
-    const currentIndex = checked.indexOf(category);
-    const newChecked = [...checked];
+    const currentIndex = selectedCategories.indexOf(category);
+    const newSelectedCategories = [...selectedCategories];
 
     if (currentIndex === -1) {
-      newChecked.push(category);
+      newSelectedCategories.push(category);
     } else {
-      newChecked.splice(currentIndex, 1);
+      newSelectedCategories.splice(currentIndex, 1);
     }
-
-    setChecked(newChecked);
+    setSelectedCategories(newSelectedCategories);
   };
 
   return (
@@ -61,7 +62,7 @@ export default function ChooseCategoriesDialog({ open, onClose, checked, setChec
             <CategoryItem
               key={category.title}
               category={category}
-              checked={checked.includes(category.title)}
+              checked={selectedCategories.includes(category.title)}
               onToggle={handleToggle}
             />
           )

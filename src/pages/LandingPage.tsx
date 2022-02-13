@@ -8,24 +8,14 @@ import LanguageSwitcher from '../components/LanguageSwitcher';
 import ChooseCategoriesDialog from '../components/ChooseCategories';
 import compareCategories from '../data/index'
 import { useTranslation } from 'react-i18next';
-import categoriesAtom from '../recoil/atoms/categories';
-import { useSetRecoilState } from 'recoil';
+
 
 export default function LandingPage() {
   const { t } = useTranslation('landingPage')
-  const setCategories = useSetRecoilState(categoriesAtom)
   const [open, setOpen] = useState(false)
-  const [checked, setChecked] = useState<string[]>(compareCategories.map(category =>
-    category.title
-  ))
-
-  const onClose = () => {
-    setCategories(compareCategories.filter(category =>
-      checked.includes(category.title)
-    ))
-    setOpen(false)
-  }
   const navigate = useNavigate()
+
+  const onClose = () => setOpen(false)
 
   return (
     <Box sx={backgroundStyle}>
@@ -45,8 +35,6 @@ export default function LandingPage() {
         <ChooseCategoriesDialog
           open={open}
           onClose={onClose}
-          checked={checked}
-          setChecked={setChecked}
         />
       </Container>
       <LanguageSwitcher />

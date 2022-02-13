@@ -1,11 +1,10 @@
 import { Category,  Quiz } from "./data/types"
-import { SetterOrUpdater } from "recoil"
 
 function getRandomElement<Type>(arr: Type[]): Type {
   return arr[Math.floor(Math.random() * arr.length)]
 }
 
-function generateQuiz(categories: Category[], setCategories: SetterOrUpdater<Category[]> ): Quiz | undefined {
+function generateQuiz(categories: Category[], setCategories: React.Dispatch<React.SetStateAction<Category[]>>): Quiz | undefined {
   const category = getRandomElement(categories)
   if (category === undefined) {
     return undefined

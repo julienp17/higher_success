@@ -8,10 +8,11 @@ import { Contender } from '../data/types';
 import { Link, useNavigate } from 'react-router-dom';
 import { generateQuiz } from '../utils'
 import LanguageSwitcher from '../components/LanguageSwitcher';
-import categoriesAtom from '../recoil/atoms/categories';
-import { useRecoilState, useSetRecoilState } from "recoil"
+import { useRecoilValue, useSetRecoilState } from "recoil"
 import CurrentScore from '../components/CurrentScore';
 import currentScoreAtom from '../recoil/atoms/currentScore';
+import selectedCategoriesAtom from '../recoil/atoms/selectedCategories';
+import compareCategories from '../data';
 
 type SideContenderProps = {
   contender: Contender,
@@ -105,7 +106,10 @@ function MiddleCaption({ caption, guessedRight } : { caption: string, guessedRig
 
 export default function MostSuccessFulPage() {
   const setCurrentScore = useSetRecoilState(currentScoreAtom)
-  const [categories, setCategories] = useRecoilState(categoriesAtom)
+  const selectedCategories = useRecoilValue(selectedCategoriesAtom)
+  const [categories, setCategories] = useState(
+    compareCategories.filter(category => selectedCategories.includes(category.title))
+  )
   const [quiz, setQuiz] = useState(() => generateQuiz(categories, setCategories))
   const navigate = useNavigate()
 

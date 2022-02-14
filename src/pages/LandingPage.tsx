@@ -21,7 +21,7 @@ export default function LandingPage() {
     <Box sx={backgroundStyle}>
       <Container component="main" maxWidth="md" sx={{ mb: 10 }} >
         <Stack spacing={4} sx={{ alignItems: "center" }}>
-          <img src={logo} alt="Most successfull logo" style={{ width: 820, height: 350 }}/>
+          <img src={logo} alt="Most successfull logo" style={{ width: 770, height: 300 }}/>
           <Typography variant="h5" component="h2" gutterBottom color="white"  textAlign="center">
             { t('caption') }
           </Typography>

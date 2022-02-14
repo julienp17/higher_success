@@ -19,7 +19,7 @@ const mostSales: Contender[] = [
   },
   {
     name: "Wii Sports",
-    imageUri: "https://fr.shopping.rakuten.com/photo/971082479_L.jpg",
+    imageUri: "https://www.nintenderos.com/wp-content/uploads/2020/04/Wii-Sports.-e1586016448965.jpg",
     value: 82_900_000
   },
   {

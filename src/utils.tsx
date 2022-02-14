@@ -1,17 +1,30 @@
-import { Category,  Quiz } from "./data/types"
+import React from 'react'
+import { Category,  Query,  Quiz } from "./data/types"
 
 function getRandomElement<Type>(arr: Type[]): Type {
   return arr[Math.floor(Math.random() * arr.length)]
 }
 
 function generateQuiz(categories: Category[], setCategories: React.Dispatch<React.SetStateAction<Category[]>>): Quiz | undefined {
-  const category = getRandomElement(categories)
+  if (categories.length === 0) {
+    return undefined
+  }
+  const allQueries = categories.reduce((acc: Query[], cur) => acc.concat(cur.queries), [])
+  const query = getRandomElement(allQueries)
+  const compared = getRandomElement(query.items)
+  const contender = getRandomElement(query.items.filter(item => item.name !== compared.name))
+  const category = categories.find(
+    category => category.queries.find(
+      query => query.items.find(
+        item => item.name === compared.name
+      ) && query.items.find(
+        item => item.name === contender.name
+      )
+    )
+  )
   if (category === undefined) {
     return undefined
   }
-  const query = getRandomElement(category.queries)
-  const compared = getRandomElement(query.items)
-  const contender = getRandomElement(query.items.filter(item => item.name !== compared.name))
 
   console.log((compared.value > contender.value)
     ? `${compared.name} > ${contender.name}`

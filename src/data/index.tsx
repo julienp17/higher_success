@@ -53,7 +53,7 @@ const compareCategories: Category[] = [
     queries: music
   },
   {
-    title: "Video games",
+    title: "Video Games",
     queries: videogames
   }
 ]

@@ -58,7 +58,7 @@ const highestGDP: Contender[] = [
     value: 1_578_417_211_937
   },
   {
-    name: "south_korea",
+    name: "south Korea",
     imageUri: "https://img.koreatimes.co.kr/upload/newsV2/images/202112/74423fcbfbce41819086625e630b812f.jpg/dims/resize/740/optimize",
     value: 1_530_750_923_149
   },

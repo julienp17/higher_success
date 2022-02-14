@@ -71,12 +71,8 @@ function SideContender({ contender, namespace, guessMostSuccessfull, guessedRigh
   )
 }
 
-type HomePanelProps = {
-  categoryTitle: string,
-  namespace: string
-}
-
-function HomePanel({ categoryTitle, namespace } : HomePanelProps) {
+function HomePanel({ categoryTitle } : { categoryTitle: string }) {
+  const namespace = categoryTitle.replace(' ', '')
   const { t } = useTranslation(['mostSuccessful', namespace])
 
   return (
@@ -161,13 +157,14 @@ export default function MostSuccessFulPage() {
   if (quiz === undefined) {
     return null
   }
+  const namespace = quiz.category.title.replace(' ', '')
   return (
     <Stack direction="row" sx={styles.root}>
       {
         ((quiz?.guessedRight === undefined) || (quiz.contender.left.value > quiz.contender.right.value)) &&
         <SideContender
           contender={quiz.contender.left}
-          namespace={quiz.category.title}
+          namespace={namespace}
           guessMostSuccessfull={guessMostSuccessfull}
           guessedRight={quiz.guessedRight}
           formatValue={quiz.query.formatValue}
@@ -179,7 +176,7 @@ export default function MostSuccessFulPage() {
         ((quiz.guessedRight === undefined) || (quiz.contender.left.value < quiz.contender.right.value)) &&
         <SideContender
           contender={quiz.contender.right}
-          namespace={quiz.category.title}
+          namespace={namespace}
           guessMostSuccessfull={guessMostSuccessfull}
           guessedRight={quiz.guessedRight}
           formatValue={quiz.query.formatValue}
@@ -191,14 +188,13 @@ export default function MostSuccessFulPage() {
         !(quiz.guessedRight === false) &&
         <HomePanel
           categoryTitle={quiz.category.title}
-          namespace={quiz.category.title}
         />
       }
       <LanguageSwitcher />
       <CurrentScore />
       <MiddleCaption
         caption={quiz.query.caption}
-        namespace={quiz.category.title}
+        namespace={namespace}
         guessedRight={quiz.guessedRight}
       />
       {

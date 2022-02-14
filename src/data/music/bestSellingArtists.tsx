@@ -33,7 +33,7 @@ const bestSellingArtists: Contender[] = [
     value: 246_000_000
   },
   {
-    name: "Taylor Switf",
+    name: "Taylor Swift",
     imageUri: "https://voi.img.pmdstatic.net/fit/http.3A.2F.2Fprd2-bone-image.2Es3-website-eu-west-1.2Eamazonaws.2Ecom.2Fprismamedia_people.2F2017.2F06.2F30.2F3182b167-f8bb-48b5-888f-d60190a36f3e.2Ejpeg/2048x1536/quality/80/taylor-swift.jpeg",
     value: 235_400_000
   },
